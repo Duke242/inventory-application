@@ -1,0 +1,29 @@
+form li, label {
+  display: contents;
+  text-align: right; 
+}
+
+span:after { 
+  content: ":";
+  margin-inline-end: 0.5rem;
+
+}
+
+form ul {
+  display: grid;
+  grid-template-columns: max-content 0fr; 
+}
+
+button { 
+  grid-column: 2;
+}
+
+nav ul {
+  display: flex;
+  list-style: none; 
+  gap: 1rem;
+}
+
+ul li { 
+  font-size: larger;
+}

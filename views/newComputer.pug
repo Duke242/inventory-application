@@ -1,0 +1,22 @@
+extends layout 
+
+block content  
+  ul
+    each computer in computers
+      li #{computer.manufacturer}: #{computer.os} ($#{computer.price})  
+  form(action="/computer" method="POST") 
+    ul 
+      li 
+        label 
+          span Manufacturer
+          input(type="text" name="manufacturer")
+      li 
+        label 
+          span Operating System
+          input(type="text" name="os")
+      li 
+        label 
+          span Price
+          input(type="text" name="price")
+      li 
+        button(type="submit") Submit

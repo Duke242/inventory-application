@@ -1,29 +1,27 @@
-import mongoose from "mongoose";
-mongoose.connect(process.env.MONGO_URL)
 
-export default mongoose
+module.exports = { setup: (mongoose) => {
+  mongoose.connect(process.env.MONGO_URL)
 
-export const setup = (mongoose) => {
-  const TVSchema = new mongoose.Schema({
-    size : { type: String, required: true },
-    manufacturer : { type: String, required: true },
-    price : { type: Number, required: true },
+  const tvSchema = new mongoose.Schema({
+    size: { type: String, required: true },
+    manufacturer: { type: String, required: true },
+    price: { type: Number, required: true },
   })
 
-  const cellPhonesSchema = new mongoose.Schema({
-    manufacturer : { type: String, required: true },
-    operatingSystem : { type: String, required: true },
-    price : { type: Number, required: true },
+  const cellphoneSchema = new mongoose.Schema({
+    manufacturer: { type: String, required: true },
+    os: { type: String, required: true },
+    price: { type: Number, required: true },
   })
 
-  const computersSchema = new mongoose.Schema({
-    manufacturer : { type: String, required: true },
-    operatingSystem : { type: String, required: true },
-    price : { type: Number, required: true },
+  const computerSchema = new mongoose.Schema({
+    manufacturer: { type: String, required: true },
+    os: { type: String, required: true },
+    price: { type: Number, required: true },
   })
+  try { mongoose.model('tv', tvSchema) } catch(e) {}
+  try { mongoose.model('cellphone', cellphoneSchema) } catch(e) {}
+  try { mongoose.model('computer', computerSchema) } catch(e) {}
 
-
-  const TVs = mongoose.model('TVs', TVSchema)
-  const cellPhones = mongoose.model('cellPhones', cellPhonesSchema)
-  const computers = mongoose.model('computers', computersSchema)
-}
+} }
+ 

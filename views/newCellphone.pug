@@ -1,0 +1,23 @@
+extends layout
+
+
+block content 
+  ul 
+   each cellphone in cellphones 
+      li #{cellphone.manufacturer}: #{cellphone.os} ($#{cellphone.price})  
+  form(action="/cellphone" method="POST") 
+    ul 
+      li 
+        label 
+          span Manufacturer
+          input(type="text" name="manufacturer")
+      li 
+        label 
+          span Operating System
+          input(type="text" name="os")
+      li 
+        label 
+          span Price
+          input(type="text" name="price")
+      li 
+        button(type="submit") Submit

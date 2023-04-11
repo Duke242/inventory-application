@@ -2,6 +2,19 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href="stylesheets/form.css")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
   body
-    block content
+    header 
+      nav   
+        ul  
+          li 
+            a(href="/tv") TV
+          li
+            a(href="/computer") Computer
+          li
+            a(href="/cellphone") Cellphone
+    main
+      h1= title 
+      block content

@@ -1,0 +1,24 @@
+extends layout 
+
+block content  
+  ul
+    each tv in tvs
+      li #{tv.manufacturer}: #{tv.size} ($#{tv.price})  
+        button.updateButton Update
+  form(action="/tv" method="POST") 
+    ul 
+      li 
+        label 
+          span Size
+          input(type="text" name="size")
+      li 
+        label 
+          span Manufacturer
+          input(type="text" name="manufacturer")
+      li 
+        label 
+          span Price
+          input(type="text" name="price")
+      li 
+        button(type="submit") Submit
+ 
