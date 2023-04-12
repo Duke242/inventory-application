@@ -2,10 +2,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const methodOverride = require('method-override')
 var logger = require('morgan');
 require('dotenv').config() 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var tvsRouter = require('./routes/tvs');
 
 var app = express();
 
@@ -16,11 +18,20 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// app.use(methodOverride('_method'));
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tvs', tvsRouter);
 
 
 // catch 404 and forward to error handler

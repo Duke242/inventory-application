@@ -4,7 +4,7 @@ block content
   ul
     each tv in tvs
       li #{tv.manufacturer}: #{tv.size} ($#{tv.price})  
-        button.updateButton Update
+        a(href="/tvUpdate")  Update
   form(action="/tv" method="POST") 
     ul 
       li 
@@ -21,4 +21,4 @@ block content
           input(type="text" name="price")
       li 
         button(type="submit") Submit
- 
+    

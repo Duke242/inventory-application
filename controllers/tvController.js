@@ -8,8 +8,20 @@ module.exports = {
   get: async (req, res) => {
     setup(mongoose)
     const TV = mongoose.model('tv')
-    const tvs = await TV.find()
-    res.render('newTV', { title: 'TVs', tvs })
+    if (req.params.id != null) {
+      const tv = await TV.findOne({ _id: req.params.id })
+      res.render(
+        'tvs/index',
+        { title: `${tv.size}” ${tv.manufacturer}`, tv, method: 'PATCH' }
+      )
+    } else {
+      const tvs = await TV.find()
+      res.render(
+        'tvs/index',
+        { title: 'TVs', tvs, method: 'POST' }
+      )
+    }
+    
   },
   post: async (req, res) =>  { 
     setup(mongoose)
@@ -18,29 +30,26 @@ module.exports = {
     console.log({ size, manufacturer, price })
     const newTV = new TV({ size, manufacturer, price }) 
     await newTV.save()
-    res.redirect('/tv')
+    res.redirect('/tvs')
   }, 
-  patch: ("/:id", async (req, res) =>  { 
+  patch: async (req, res) =>  { 
+    console.log('PATCH WORKS')
     setup(mongoose)
     const TV = mongoose.model('tv')
     const options = { overwrite: true }
-    const query = { _id: ObjectId(req.params.id) }
-    const { size, manufacturer, price } = req.body
-    const updatedInfo = await TV.findOneAndUpdate(query, { size, manufacturer, price }, options)
-  }),
+    const query = { _id: req.params.id }
+    await TV.findOneAndUpdate(query, req.body, options)
+    res.redirect('/tvs')
+  },
   delete: async (req, res) =>  { 
     setup(mongoose)
+    const TV = mongoose.model('tv')
+    await TV.findByIdAndRemove(req.params.id)
+    res.redirect('/tvs')
   },
 }
 
-// router.put("/:id", async (req, res) => {
-//   const query = { _id: ObjectId(req.params.id) };
-//   const options = { overwrite: true };
-//   const updates = req.body;
-//   let collection = await db.collection("posts");
-//   let result = await collection.findOneAndUpdate(query, updates, options);
-//   res.send(result).status(200);
-// });
+
 
 
 

@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Electronics' });
 });
 
-router.get('/tv', controllers.tv.get)
+
 
 router.get('/computer', async (req, res) => {
   mongoose.connect(process.env.MONGO_URL)
@@ -31,7 +31,7 @@ router.get('/cellphone', async (req, res) => {
   res.render('newCellphone', { title: 'Cell Phones', cellphones})
 })
 
-router.post('/tv', controllers.tv.post)
+
 router.post('/computer', async (req,res) => {
 setup(mongoose)
 const Comp = mongoose.model('computer')
@@ -49,9 +49,6 @@ router.post('/cellphone', async (req,res) => {
   await newCell.save()
   res.redirect('/cellphone')
 })
-
-router.patch('/tv', controllers.tv.patch)
-router.delete('/tv', controllers.tv.delete)
 
 
 module.exports = router;

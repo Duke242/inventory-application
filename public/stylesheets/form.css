@@ -27,3 +27,7 @@ nav ul {
 ul li { 
   font-size: larger;
 }
+
+form.delete {
+  display: inline;
+}
