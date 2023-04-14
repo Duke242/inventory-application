@@ -12,13 +12,13 @@ module.exports = {
       const tv = await TV.findOne({ _id: req.params.id })
       res.render(
         'tvs/index',
-        { title: `${tv.size}” ${tv.manufacturer}`, tv, method: 'PATCH' }
+        { title: `${tv.size}” ${tv.manufacturer}`, tv }
       )
     } else {
       const tvs = await TV.find()
       res.render(
         'tvs/index',
-        { title: 'TVs', tvs, method: 'POST' }
+        { title: 'TVs', tvs }
       )
     }
     
@@ -33,7 +33,6 @@ module.exports = {
     res.redirect('/tvs')
   }, 
   patch: async (req, res) =>  { 
-    console.log('PATCH WORKS')
     setup(mongoose)
     const TV = mongoose.model('tv')
     const options = { overwrite: true }

@@ -1,3 +1,8 @@
+main {
+  display: grid;
+  justify-content: center;
+}
+
 form li, label {
   display: contents;
   text-align: right; 
@@ -6,12 +11,12 @@ form li, label {
 span:after { 
   content: ":";
   margin-inline-end: 0.5rem;
-
 }
 
 form ul {
   display: grid;
   grid-template-columns: max-content 0fr; 
+  justify-content: center;
 }
 
 button { 
@@ -22,12 +27,40 @@ nav ul {
   display: flex;
   list-style: none; 
   gap: 1rem;
+  justify-content: center;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+header {
+  padding:0.5rem;
+  background: blue;
 }
 
 ul li { 
   font-size: larger;
+  text-align: left;
+  list-style: none;
 }
 
 form.delete {
   display: inline;
+}
+
+h1 {
+  text-align: center;
+}
+
+main ul li a {
+  margin: 2rem;
+  text-decoration: none;
+  color: blue;
+}
+
+main ul li input {
+  mergin: 2rem;
 }
